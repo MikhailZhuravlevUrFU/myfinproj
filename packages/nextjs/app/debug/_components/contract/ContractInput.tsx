@@ -13,6 +13,7 @@ import {
   IntegerVariant,
 } from "~~/components/scaffold-eth";
 import { AbiParameterTuple } from "~~/utils/scaffold-eth/contract";
+import "./ContractInput.css";
 
 type ContractInputProps = {
   setForm: Dispatch<SetStateAction<Record<string, any>>>;
@@ -37,13 +38,13 @@ export const ContractInput = ({ setForm, form, stateObjectKey, paramType }: Cont
   const renderInput = () => {
     switch (paramType.type) {
       case "address":
-        return <AddressInput {...inputProps} />;
+        return <AddressInput {...inputProps}/>;
       case "bytes32":
-        return <Bytes32Input {...inputProps} />;
+        return <Bytes32Input {...inputProps}/>;
       case "bytes":
-        return <BytesInput {...inputProps} />;
+        return <BytesInput {...inputProps}/>;
       case "string":
-        return <InputBase {...inputProps} />;
+        return <InputBase {...inputProps}/>;
       case "tuple":
         return (
           <Tuple
@@ -51,12 +52,12 @@ export const ContractInput = ({ setForm, form, stateObjectKey, paramType }: Cont
             parentForm={form}
             abiTupleParameter={paramType as AbiParameterTuple}
             parentStateObjectKey={stateObjectKey}
+            className="contract-tuple-container"
           />
         );
       default:
-        // Handling 'int' types and 'tuple[]' types
         if (paramType.type.includes("int") && !paramType.type.includes("[")) {
-          return <IntegerInput {...inputProps} variant={paramType.type as IntegerVariant} />;
+          return <IntegerInput {...inputProps} className="contract-input-field contract-input-number" />;
         } else if (paramType.type.startsWith("tuple[")) {
           return (
             <TupleArray
@@ -64,21 +65,20 @@ export const ContractInput = ({ setForm, form, stateObjectKey, paramType }: Cont
               parentForm={form}
               abiTupleParameter={paramType as AbiParameterTuple}
               parentStateObjectKey={stateObjectKey}
+              className="contract-tuple-array"
             />
           );
         } else {
-          return <InputBase {...inputProps} />;
+          return <InputBase {...inputProps} className="contract-input-field" />;
         }
     }
   };
+  
 
   return (
-    <div className="flex flex-col gap-1.5 w-full">
-      <div className="flex items-center ml-2">
-        {paramType.name && <span className="text-xs font-medium mr-2 leading-none">{paramType.name}</span>}
-        <span className="block text-xs font-extralight leading-none">{paramType.type}</span>
-      </div>
+    <div className="contract-input-container">
       {renderInput()}
     </div>
+
   );
 };

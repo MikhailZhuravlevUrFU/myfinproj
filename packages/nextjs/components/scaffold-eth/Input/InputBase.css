@@ -1,0 +1,60 @@
+/* Контейнер поля ввода */
+.input-base-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .input-base-container:focus-within {
+    border-color: #6c5ce7; /* Цвет границы при фокусе */
+    box-shadow: 0 0 8px rgba(108, 92, 231, 0.5); /* Эффект свечения */
+  }
+  
+  /* Ошибка */
+  .input-error {
+    border-color: #ef4444; /* Красная граница для ошибок */
+  }
+  
+  /* Заблокированное состояние */
+  .input-disabled {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+    cursor: not-allowed;
+  }
+  
+  /* Префикс и суффикс */
+  .input-prefix,
+  .input-suffix {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: #6b7280; /* Цвет текста для префикса/суффикса */
+  }
+  
+  /* Поле ввода */
+  .input-element {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 10px;
+    background-color: transparent;
+    color: #333;
+  }
+  
+  .input-element:disabled {
+    background-color: transparent;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  /* Placeholder */
+  .input-element::placeholder {
+
+    font-weight: 400;
+  }
+  

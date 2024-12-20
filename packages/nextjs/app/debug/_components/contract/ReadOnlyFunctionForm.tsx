@@ -5,6 +5,7 @@ import { InheritanceTooltip } from "./InheritanceTooltip";
 import { Abi, AbiFunction } from "abitype";
 import { Address } from "viem";
 import { useReadContract } from "wagmi";
+import "./ReadOnlyFunctionForm.css"
 import {
   ContractInput,
   displayTxResult,
@@ -70,23 +71,25 @@ export const ReadOnlyFunctionForm = ({
   });
 
   return (
-    <div className="flex flex-col gap-3 py-5 first:pt-0 last:pb-1">
-      <p className="font-medium my-0 break-words">
+    <div className="form-container-readonly">
+      <p className="form-title-readonly">
         {abiFunction.name}
         <InheritanceTooltip inheritedFrom={inheritedFrom} />
       </p>
-      {inputElements}
-      <div className="flex flex-col md:flex-row justify-between gap-2 flex-wrap">
+      <div className="form-input-group-readonly">
+        {inputElements}
+      </div>
+      <div className="button-group-readonly">
         <div className="flex-grow w-full md:max-w-[80%]">
           {result !== null && result !== undefined && (
-            <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
+            <div className="tx-result-readonly">
               <p className="font-bold m-0 mb-1">Result:</p>
               <pre className="whitespace-pre-wrap break-words">{displayTxResult(result, "sm")}</pre>
             </div>
           )}
         </div>
         <button
-          className="btn btn-secondary btn-sm self-end md:self-start"
+          className="read-button"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);
@@ -94,9 +97,10 @@ export const ReadOnlyFunctionForm = ({
           disabled={isFetching}
         >
           {isFetching && <span className="loading loading-spinner loading-xs"></span>}
-          Read 📡
+          Read
         </button>
       </div>
     </div>
   );
 };
+

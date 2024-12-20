@@ -4,6 +4,7 @@ import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outl
 
 export const AddressCopyIcon = ({ className, address }: { className?: string; address: string }) => {
   const [addressCopied, setAddressCopied] = useState(false);
+
   return (
     <CopyToClipboard
       text={address}
@@ -14,11 +15,15 @@ export const AddressCopyIcon = ({ className, address }: { className?: string; ad
         }, 800);
       }}
     >
-      <button onClick={e => e.stopPropagation()} type="button">
+      <button
+        onClick={e => e.stopPropagation()}
+        type="button"
+        className={`flex items-center justify-center ${className} px-4 py-2`}
+      >
         {addressCopied ? (
-          <CheckCircleIcon className={className} aria-hidden="true" />
+          <CheckCircleIcon className="h-1 w-1" aria-hidden="true" />
         ) : (
-          <DocumentDuplicateIcon className={className} aria-hidden="true" />
+          <DocumentDuplicateIcon className="h-1 w-1" aria-hidden="true" />
         )}
       </button>
     </CopyToClipboard>

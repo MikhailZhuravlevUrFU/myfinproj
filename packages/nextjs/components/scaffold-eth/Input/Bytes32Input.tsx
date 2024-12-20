@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { hexToString, isHex, stringToHex } from "viem";
 import { CommonInputProps, InputBase } from "~~/components/scaffold-eth";
+import "./Bytes32Input.css"; // Импорт стилей
 
 export const Bytes32Input = ({ value, onChange, name, placeholder, disabled }: CommonInputProps) => {
   const convertStringToBytes32 = useCallback(() => {
@@ -11,21 +12,24 @@ export const Bytes32Input = ({ value, onChange, name, placeholder, disabled }: C
   }, [onChange, value]);
 
   return (
-    <InputBase
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-      disabled={disabled}
-      suffix={
-        <button
-          className="self-center cursor-pointer text-xl font-semibold px-4 text-accent"
-          onClick={convertStringToBytes32}
-          type="button"
-        >
-          #
-        </button>
-      }
-    />
+    <div className="input-container">
+      <input
+        type="text"
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="input-base"
+      />
+      <button
+        className="suffix-button"
+        onClick={convertStringToBytes32}
+        type="button"
+        disabled={disabled}
+      >
+        #
+      </button>
+    </div>
   );
 };

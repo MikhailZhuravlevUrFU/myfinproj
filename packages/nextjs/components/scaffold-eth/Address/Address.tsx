@@ -114,9 +114,9 @@ export const Address = ({
 
   if (!checkSumAddress) {
     return (
-      <div className="flex items-center">
+      <div className="address-container flex items-center">
         <div
-          className="flex-shrink-0 skeleton rounded-full"
+          className="address-blockie skeleton rounded-full"
           style={{
             width: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
             height: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
@@ -124,11 +124,11 @@ export const Address = ({
         ></div>
         <div className="flex flex-col space-y-1">
           {!onlyEnsOrAddress && (
-            <div className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
+            <div className={`address-text skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
               <span className="invisible">0x1234...56789</span>
             </div>
           )}
-          <div className={`ml-1.5 skeleton rounded-lg ${textSizeMap[addressSize]}`}>
+          <div className={`address-text skeleton rounded-lg ${textSizeMap[addressSize]}`}>
             <span className="invisible">0x1234...56789</span>
           </div>
         </div>
@@ -143,8 +143,8 @@ export const Address = ({
   const blockExplorerAddressLink = getBlockExplorerAddressLink(targetNetwork, checkSumAddress);
 
   return (
-    <div className="flex items-center flex-shrink-0">
-      <div className="flex-shrink-0">
+    <div className="address-container flex items-center flex-shrink-0">
+      <div className="blockie-container flex-shrink-0">
         <BlockieAvatar
           address={checkSumAddress}
           ensImage={ensAvatar}
@@ -154,11 +154,11 @@ export const Address = ({
       <div className="flex flex-col">
         {showSkeleton &&
           (isEnsNameLoading ? (
-            <div className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
+            <div className={`address-text skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
               <span className="invisible">{shortAddress}</span>
             </div>
           ) : (
-            <span className={`ml-1.5 ${textSizeMap[ensSize]} font-bold`}>
+            <span className={`address-text ${textSizeMap[ensSize]} font-bold`}>
               <AddressLinkWrapper
                 disableAddressLink={disableAddressLink}
                 blockExplorerAddressLink={blockExplorerAddressLink}
@@ -168,12 +168,12 @@ export const Address = ({
             </span>
           ))}
         <div className="flex">
-          <span className={`ml-1.5 ${textSizeMap[addressSize]} font-normal`}>
+          <span className={`address-text ${textSizeMap[addressSize]} font-normal`}>
             <AddressLinkWrapper
               disableAddressLink={disableAddressLink}
               blockExplorerAddressLink={blockExplorerAddressLink}
             >
-              {onlyEnsOrAddress ? displayEnsOrAddress : displayAddress}
+              <span className="no-underline text-black">{onlyEnsOrAddress ? displayEnsOrAddress : displayAddress}</span>
             </AddressLinkWrapper>
           </span>
           <AddressCopyIcon

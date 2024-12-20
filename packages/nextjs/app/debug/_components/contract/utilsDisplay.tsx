@@ -104,7 +104,7 @@ const ArrayDisplay = ({ values, size }: { values: DisplayContent[]; size: Result
 
 const StructDisplay = ({ struct, size }: { struct: Record<string, any>; size: ResultFontSize }) => {
   return (
-    <div className="flex flex-col gap-y-1">
+    <div className="flex flex-row gap-y-1">
       struct
       {Object.entries(struct).map(([k, v]) => (
         <ObjectFieldDisplay key={k} name={k} value={v} size={size} />

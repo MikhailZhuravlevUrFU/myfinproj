@@ -16,6 +16,7 @@ import {
 import { IntegerInput } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+import './WriteOnlyFunctionForm.css'; // Импортируем стили
 
 type WriteOnlyFunctionFormProps = {
   abi: Abi;
@@ -82,57 +83,58 @@ export const WriteOnlyFunctionForm = ({
         form={form}
         stateObjectKey={key}
         paramType={input}
+        className="input-field"
       />
     );
   });
   const zeroInputs = inputs.length === 0 && abiFunction.stateMutability !== "payable";
 
   return (
-    <div className="py-5 space-y-3 first:pt-0 last:pb-1">
-      <div className={`flex gap-3 ${zeroInputs ? "flex-row justify-between items-center" : "flex-col"}`}>
-        <p className="font-medium my-0 break-words">
-          {abiFunction.name}
-          <InheritanceTooltip inheritedFrom={inheritedFrom} />
-        </p>
+    <div className="form-container">
+      <div className="form-title">
+        {abiFunction.name}
+        <InheritanceTooltip inheritedFrom={inheritedFrom} />
+      </div>
+      <div className="form-input-group">
         {inputs}
         {abiFunction.stateMutability === "payable" ? (
-          <div className="flex flex-col gap-1.5 w-full">
-            <div className="flex items-center ml-2">
-              <span className="text-xs font-medium mr-2 leading-none">payable value</span>
-              <span className="block text-xs font-extralight leading-none">wei</span>
-            </div>
+          <div className="payment-input-group">
+            <span className="payment-label">Payable Value (wei)</span>
             <IntegerInput
               value={txValue}
               onChange={updatedTxValue => {
                 setDisplayedTxResult(undefined);
                 setTxValue(updatedTxValue);
               }}
-              placeholder="value (wei)"
+              className="payment-input"
+              placeholder="Enter value in wei"
             />
+            <span className="payment-info">Value must be in wei</span>
           </div>
         ) : null}
-        <div className="flex justify-between gap-2">
-          {!zeroInputs && (
-            <div className="flex-grow basis-0">
-              {displayedTxResult ? <TxReceipt txResult={displayedTxResult} /> : null}
-            </div>
-          )}
-          <div
-            className={`flex ${
-              writeDisabled &&
-              "tooltip before:content-[attr(data-tip)] before:right-[-10px] before:left-auto before:transform-none"
-            }`}
-            data-tip={`${writeDisabled && "Wallet not connected or in the wrong network"}`}
+      </div>
+      <div className="button-group">
+        <div className="tooltip-wrapper">
+          <button
+            className="send-button"
+            disabled={writeDisabled || isPending}
+            onClick={handleWrite}
           >
-            <button className="btn btn-secondary btn-sm" disabled={writeDisabled || isPending} onClick={handleWrite}>
-              {isPending && <span className="loading loading-spinner loading-xs"></span>}
-              Send 💸
-            </button>
-          </div>
+            {isPending && <span className="loading loading-spinner loading-xs"></span>}
+            Выполнить
+          </button>
+          {writeDisabled && (
+            <div className="tooltip">Wallet not connected or in the wrong network</div>
+          )}
         </div>
+        {!zeroInputs && (
+          <div className="tx-receipt">
+            {displayedTxResult ? <TxReceipt txResult={displayedTxResult} /> : null}
+          </div>
+        )}
       </div>
       {zeroInputs && txResult ? (
-        <div className="flex-grow basis-0">
+        <div className="tx-receipt">
           <TxReceipt txResult={txResult} />
         </div>
       ) : null}

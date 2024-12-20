@@ -1233,24 +1233,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/sdk-install-modal-web@npm:0.31.1":
-  version: 0.31.1
-  resolution: "@metamask/sdk-install-modal-web@npm:0.31.1"
+"@metamask/sdk-install-modal-web@npm:0.31.2":
+  version: 0.31.2
+  resolution: "@metamask/sdk-install-modal-web@npm:0.31.2"
   dependencies:
     "@paulmillr/qr": ^0.2.1
-  checksum: 9b9967ccbe4c0e07c39f0d7da18841902d726cd888b1745bc95d90d4e16aac3ccd2fb23f32edc1425874172ff8aa2f466eea30d9c0f7120fd14f2dbf7c12d6fc
+  checksum: 02b5dac25b572d5ede5cf436dae3905193d38010da51bcfc89551902a4aa2867c51e03d95c11d8e13839b7478d368fb3e38fd19d3bde9882d1adbec51ad8a240
   languageName: node
   linkType: hard
 
-"@metamask/sdk@npm:0.31.1":
-  version: 0.31.1
-  resolution: "@metamask/sdk@npm:0.31.1"
+"@metamask/sdk@npm:0.31.2":
+  version: 0.31.2
+  resolution: "@metamask/sdk@npm:0.31.2"
   dependencies:
     "@babel/runtime": ^7.26.0
     "@metamask/onboarding": ^1.0.1
     "@metamask/providers": 16.1.0
     "@metamask/sdk-communication-layer": 0.31.0
-    "@metamask/sdk-install-modal-web": 0.31.1
+    "@metamask/sdk-install-modal-web": 0.31.2
     "@paulmillr/qr": ^0.2.1
     bowser: ^2.9.0
     cross-fetch: ^4.0.0
@@ -1265,7 +1265,7 @@ __metadata:
     tslib: ^2.6.0
     util: ^0.12.4
     uuid: ^8.3.2
-  checksum: f9cba369835d789e8415efca2d806b045e08bfc3f6ea5478ca3a5ec1df9a4f5180eae6e6afbd96125945e22be8d925da04b991c1b1dbdc62c21b4b5ab0658983
+  checksum: a48f12bc0cfcab952608aa2c69c1174aca61bfb35b980a886e3e86c2ced9c789adbded24aca21e3c7357411e6667fcb9c691d1cd26a0c38753051f52b539d0bf
   languageName: node
   linkType: hard
 
@@ -2147,13 +2147,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@safe-global/safe-apps-provider@npm:0.18.4":
-  version: 0.18.4
-  resolution: "@safe-global/safe-apps-provider@npm:0.18.4"
+"@safe-global/safe-apps-provider@npm:0.18.5":
+  version: 0.18.5
+  resolution: "@safe-global/safe-apps-provider@npm:0.18.5"
   dependencies:
     "@safe-global/safe-apps-sdk": ^9.1.0
     events: ^3.3.0
-  checksum: 8e4254c2d5d6852133d70f2fe63417796b349e2af875f45464a2d99e2423657af4465575779419d6f7c9db2155bbec42e0f617727666790fdd1c9f170b5b1794
+  checksum: 0d00a4f24c66a0f96d2808f918e1ee33aed5fc6454c3a3b7ca5419cbd420b30e6517991fc79cefb4dc54aec1dde5ec40154aeac1813dc32d39674cf53d86b303
   languageName: node
   linkType: hard
 
@@ -2377,6 +2377,7 @@ __metadata:
     eslint-config-next: ^14.2.15
     eslint-config-prettier: ^8.10.0
     eslint-plugin-prettier: ^5.2.1
+    ethers: ^6.13.4
     next: ^14.2.11
     next-nprogress-bar: ^2.3.13
     next-themes: ^0.3.0
@@ -2392,8 +2393,8 @@ __metadata:
     typescript: <5.6.0
     usehooks-ts: ^3.1.0
     vercel: ^39.1.3
-    viem: 2.21.54
-    wagmi: 2.13.4
+    viem: ^2.21.55
+    wagmi: ^2.14.3
     zustand: ^5.0.0
   languageName: unknown
   linkType: soft
@@ -2957,6 +2958,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:22.7.5":
+  version: 22.7.5
+  resolution: "@types/node@npm:22.7.5"
+  dependencies:
+    undici-types: ~6.19.2
+  checksum: 1a8bbb504efaffcef7b8491074a428e5c0b5425b0c0ffb13e7262cb8462c275e8cc5eaf90a38d8fbf52a1eeda7c01ab3b940673c43fc2414140779c973e40ec6
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^18.19.50":
   version: 18.19.50
   resolution: "@types/node@npm:18.19.50"
@@ -3498,24 +3508,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/connectors@npm:5.5.3":
-  version: 5.5.3
-  resolution: "@wagmi/connectors@npm:5.5.3"
+"@wagmi/connectors@npm:5.7.0":
+  version: 5.7.0
+  resolution: "@wagmi/connectors@npm:5.7.0"
   dependencies:
     "@coinbase/wallet-sdk": 4.2.3
-    "@metamask/sdk": 0.31.1
-    "@safe-global/safe-apps-provider": 0.18.4
+    "@metamask/sdk": 0.31.2
+    "@safe-global/safe-apps-provider": 0.18.5
     "@safe-global/safe-apps-sdk": 9.1.0
     "@walletconnect/ethereum-provider": 2.17.0
     cbw-sdk: "npm:@coinbase/wallet-sdk@3.9.3"
   peerDependencies:
-    "@wagmi/core": 2.15.2
+    "@wagmi/core": 2.16.0
     typescript: ">=5.0.4"
     viem: 2.x
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 021f927acdbe40df9f6b625006d05333c97aee916e615b3671baaeb3b6c8ef53bf411cef802b244334a8d9e0f80dfafc56a00257324f8ff33acb1b43ad5757d5
+  checksum: 8b421541282e2adfa68f12d29f243e89489d8ca841c9e434d05b3e90a76c95386ca82aa978bed9a936b70c5f7e0b097b4db14cc8130fd34b91d099843667ca3b
   languageName: node
   linkType: hard
 
@@ -3539,9 +3549,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wagmi/core@npm:2.15.2":
-  version: 2.15.2
-  resolution: "@wagmi/core@npm:2.15.2"
+"@wagmi/core@npm:2.16.0":
+  version: 2.16.0
+  resolution: "@wagmi/core@npm:2.16.0"
   dependencies:
     eventemitter3: 5.0.1
     mipd: 0.0.7
@@ -3555,7 +3565,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 42a8fc938bb3f8f878c827b7c7f3fc08b808155a6f38e5a969bdd16b1437efc217465b33ccbcb9dc1138211cdbb79d17a2f14a80a3183bf6e74f0b53b43afd8b
+  checksum: 344570354e94ab5e670b674d99fa2823120b0998227e601a6d81e3bf07b00b18b91be77fb66314dba57c749ea227cfdd812f4e1da1db07d49841d543615a24b8
   languageName: node
   linkType: hard
 
@@ -6986,6 +6996,21 @@ __metadata:
     tslib: 2.4.0
     ws: 8.17.1
   checksum: 981860c736c7ae121774ad38ea07e3611ce524a77d2fcb77db499b65afe0cbe8f344cd5204d94b68b316349ff770fd2a7d9c8b2039da41c072f98d9864099925
+  languageName: node
+  linkType: hard
+
+"ethers@npm:^6.13.4":
+  version: 6.13.4
+  resolution: "ethers@npm:6.13.4"
+  dependencies:
+    "@adraffy/ens-normalize": 1.10.1
+    "@noble/curves": 1.2.0
+    "@noble/hashes": 1.3.2
+    "@types/node": 22.7.5
+    aes-js: 4.0.0-beta.5
+    tslib: 2.7.0
+    ws: 8.17.1
+  checksum: a64ad0f05ed7f79bf3092cd54ac11c3ed4a0a3fe8ee00a81053b5b4a34d84728c12fa5aa9bf3e2cc5efabbf1a0a37f62cd3a1852cf780a1ab619421fa03c2713
   languageName: node
   linkType: hard
 
@@ -13108,6 +13133,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.7.0, tslib@npm:^2.6.2":
+  version: 2.7.0
+  resolution: "tslib@npm:2.7.0"
+  checksum: 1606d5c89f88d466889def78653f3aab0f88692e80bb2066d090ca6112ae250ec1cfa9dbfaab0d17b60da15a4186e8ec4d893801c67896b277c17374e36e1d28
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^2.0.0, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
@@ -13119,13 +13151,6 @@ __metadata:
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: e4aba30e632b8c8902b47587fd13345e2827fa639e7c3121074d5ee0880723282411a8838f830b55100cbe4517672f84a2472667d355b81e8af165a55dc6203a
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.6.2":
-  version: 2.7.0
-  resolution: "tslib@npm:2.7.0"
-  checksum: 1606d5c89f88d466889def78653f3aab0f88692e80bb2066d090ca6112ae250ec1cfa9dbfaab0d17b60da15a4186e8ec4d893801c67896b277c17374e36e1d28
   languageName: node
   linkType: hard
 
@@ -13404,6 +13429,13 @@ __metadata:
   version: 5.26.5
   resolution: "undici-types@npm:5.26.5"
   checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.19.2":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: de51f1b447d22571cf155dfe14ff6d12c5bdaec237c765085b439c38ca8518fc360e88c70f99469162bf2e14188a7b0bcb06e1ed2dc031042b984b0bb9544017
   languageName: node
   linkType: hard
 
@@ -13761,28 +13793,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"viem@npm:2.21.54":
-  version: 2.21.54
-  resolution: "viem@npm:2.21.54"
-  dependencies:
-    "@noble/curves": 1.7.0
-    "@noble/hashes": 1.6.1
-    "@scure/bip32": 1.6.0
-    "@scure/bip39": 1.5.0
-    abitype: 1.0.7
-    isows: 1.0.6
-    ox: 0.1.2
-    webauthn-p256: 0.0.10
-    ws: 8.18.0
-  peerDependencies:
-    typescript: ">=5.0.4"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 594aacd4c8f9b0fd8c99a7fe2a936c9b6ea0851d05b206b24d4903e0cbbf811c5795dd79ba5a9fdb21e40c996440cb114321b65142f00cf06a20f89a0b51d894
-  languageName: node
-  linkType: hard
-
 "viem@npm:2.7.14":
   version: 2.7.14
   resolution: "viem@npm:2.7.14"
@@ -13847,12 +13857,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wagmi@npm:2.13.4":
-  version: 2.13.4
-  resolution: "wagmi@npm:2.13.4"
+"viem@npm:^2.21.55":
+  version: 2.21.55
+  resolution: "viem@npm:2.21.55"
   dependencies:
-    "@wagmi/connectors": 5.5.3
-    "@wagmi/core": 2.15.2
+    "@noble/curves": 1.7.0
+    "@noble/hashes": 1.6.1
+    "@scure/bip32": 1.6.0
+    "@scure/bip39": 1.5.0
+    abitype: 1.0.7
+    isows: 1.0.6
+    ox: 0.1.2
+    webauthn-p256: 0.0.10
+    ws: 8.18.0
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: db937a33071f744951edf98f31f9c25e71ebce07bb620389980cd4c921f310b808ec87d132c23e022b5576b943c359dde65cbba5b9ab8d63c27ad8a6cba877dd
+  languageName: node
+  linkType: hard
+
+"wagmi@npm:^2.14.3":
+  version: 2.14.3
+  resolution: "wagmi@npm:2.14.3"
+  dependencies:
+    "@wagmi/connectors": 5.7.0
+    "@wagmi/core": 2.16.0
     use-sync-external-store: 1.2.0
   peerDependencies:
     "@tanstack/react-query": ">=5.0.0"
@@ -13862,7 +13894,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 22cd61928b73579e2bfbf63da21fd55b565acc351802978b73ab40b77480c631d21a5188c083046728de851969898bb942ee164b46b83ac8a95e11e9ac2ec6a6
+  checksum: 5d388863625a68f308a364951da81a67f3c135d6f3b0b8100df65dfbcc97e3337332bc8e8f167a0e6cba89c617560662055ed10cf31a7eb54991080d61d80527
   languageName: node
   linkType: hard
 

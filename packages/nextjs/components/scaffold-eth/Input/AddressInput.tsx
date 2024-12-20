@@ -5,6 +5,7 @@ import { Address, isAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAddress, useEnsAvatar, useEnsName } from "wagmi";
 import { CommonInputProps, InputBase, isENS } from "~~/components/scaffold-eth";
+import "./AddressInput.css"; // Импорт CSS для стилей
 
 /**
  * Address input with ENS name resolution
@@ -79,42 +80,31 @@ export const AddressInput = ({ value, name, placeholder, onChange, disabled }: C
     ensAddress === null;
 
   return (
-    <InputBase<Address>
-      name={name}
-      placeholder={placeholder}
-      error={ensAddress === null}
-      value={value as Address}
-      onChange={onChange}
-      disabled={isEnsAddressLoading || isEnsNameLoading || disabled}
-      reFocus={reFocus}
-      prefix={
-        ensName ? (
-          <div className="flex bg-base-300 rounded-l-full items-center">
-            {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-full shrink-0"></div>}
-            {ensAvatar ? (
-              <span className="w-[35px]">
-                {
-                  // eslint-disable-next-line
-                  <img className="w-full rounded-full" src={ensAvatar} alt={`${ensAddress} avatar`} />
-                }
-              </span>
-            ) : null}
-            <span className="text-accent px-2">{enteredEnsName ?? ensName}</span>
-          </div>
-        ) : (
-          (isEnsNameLoading || isEnsAddressLoading) && (
-            <div className="flex bg-base-300 rounded-l-full items-center gap-2 pr-2">
-              <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-full shrink-0"></div>
-              <div className="skeleton bg-base-200 h-3 w-20"></div>
-            </div>
-          )
-        )
-      }
-      suffix={
-        // Don't want to use nextJS Image here (and adding remote patterns for the URL)
-        // eslint-disable-next-line @next/next/no-img-element
-        value && <img alt="" className="!rounded-full" src={blo(value as `0x${string}`)} width="35" height="35" />
-      }
-    />
+    <div className="input-container">
+      {ensName && (
+        <div className="prefix">
+          {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-full"></div>}
+          {ensAvatar ? (
+            <img className="avatar" src={ensAvatar} alt={`${ensAddress} avatar`} />
+          ) : null}
+          <span className="ens-name">{enteredEnsName ?? ensName}</span>
+        </div>
+      )}
+      {!ensName && (isEnsNameLoading || isEnsAddressLoading) && (
+        <div className="prefix">
+          <div className="skeleton bg-base-200 w-[35px] h-[35px] rounded-full"></div>
+          <div className="skeleton bg-base-200 h-3 w-20"></div>
+        </div>
+      )}
+      <input
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={isEnsAddressLoading || isEnsNameLoading || disabled}
+      />
+      {value && <img className="suffix" src={blo(value as `0x${string}`)} alt="" />}
+    </div>
   );
 };

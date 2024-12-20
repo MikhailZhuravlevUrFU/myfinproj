@@ -1,0 +1,77 @@
+/* Убираем подчёркивание и синюю окраску для ссылок */
+.no-underline {
+  text-decoration: none !important;
+}
+
+.text-black {
+  color: #000 !important;
+}
+
+/* Стили для контейнера адреса */
+.address-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Стиль для блока с аватаром */
+.blockie-container {
+  flex-shrink: 0;
+}
+
+.address-blockie {
+  width: 32px;
+  height: 32px;
+  background-color: #e0e0e0; /* Цвет для скелетона */
+  border-radius: 50%;
+}
+
+.address-text {
+  color: #333;
+  font-weight: 600;
+  font-size: var(--text-size); /* Используем переменную для размера */
+  word-break: break-all;
+}
+
+.address-text.skeleton {
+  background-color: #e0e0e0;
+  width: 100px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+.address-text.font-normal {
+  font-weight: normal;
+}
+
+/* Стиль для иконки копирования */
+.ml-1 {
+  margin-left: 4px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Стиль для анимации при загрузке */
+.skeleton {
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #cfcfcf;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+/* Стиль для текста ошибки */
+.text-error {
+  color: #ff4d4d;
+  font-weight: bold;
+}

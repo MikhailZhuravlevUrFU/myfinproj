@@ -1,0 +1,108 @@
+/* Общие стили для контейнера компонента */
+.display-variable-container {
+    padding: 16px;
+    background-color: #f8f9fa; /* Светлый фон */
+    border-radius: 16px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступы между элементами */
+  }
+  
+  /* Стиль для заголовка и кнопки */
+  .display-variable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .display-variable-header h3 {
+    font-size: 20px; /* Размер шрифта заголовка */
+    font-weight: 600; /* Жирный шрифт */
+    color: #333; /* Темный цвет текста */
+    margin: 0;
+  }
+  
+  .btn-refresh {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-refresh:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+  }
+  
+  .loading {
+    margin: 0;
+  }
+  
+  /* Стиль для информации о переменной */
+  .display-variable-info {
+    font-size: 16px;
+    color: #555; /* Темный серый цвет для текста */
+    padding: 10px;
+    background-color: #ffffff; /* Белый фон */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  }
+  
+  /* Анимация для показа изменений */
+  .bg-warning {
+    background-color: rgba(255, 205, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  .animate-pulse-fast {
+    animation: pulse 0.6s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Стиль для всплывающей подсказки (Tooltip) */
+  .inheritance-tooltip {
+    display: inline-block;
+    position: relative;
+    cursor: help;
+  }
+  
+  .inheritance-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .inheritance-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  

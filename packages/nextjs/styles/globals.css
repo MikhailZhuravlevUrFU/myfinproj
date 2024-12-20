@@ -1,25 +1,30 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
+/* @import "tailwindcss/base"; */
+/* @import "tailwindcss/components"; */
 @import "tailwindcss/utilities";
 
 :root,
+[data-theme] {
+  background-color: rgb(85, 78, 78);
+}
+
+/* :root,
 [data-theme] {
   background: oklch(var(--b2));
 }
 
 body {
   min-height: 100vh;
-}
+} */
 
-h1,
+/* h1,
 h2,
 h3,
 h4 {
   margin-bottom: 0.5rem;
   line-height: 1;
-}
+} */
 
-p {
+/* p {
   margin: 1rem 0;
 }
 
@@ -29,4 +34,4 @@ p {
 
 .btn.btn-ghost {
   @apply shadow-none;
-}
+} */

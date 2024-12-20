@@ -1,78 +1,133 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-// Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
 
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
-
 /**
- * A smart contract that allows changing a state variable of the contract and tracking the changes
- * It also allows the owner to withdraw the Ether in the contract
- * @author BuidlGuidl
+ * Контракт для проведения голосований с функциями назначения кандидатов, голосования,
+ * передачи голосов и завершения голосования.
+ * Автор: BuidlGuidl (изменен под цели голосования)
  */
-contract YourContract {
-    // State Variables
-    address public immutable owner;
-    string public greeting = "Building Unstoppable Apps!!!";
-    bool public premium = false;
-    uint256 public totalCounter = 0;
-    mapping(address => uint) public userGreetingCounter;
+contract VotingContract {
+    address public immutable owner; // Владелец контракта (не изменяемый)
 
-    // Events: a way to emit log statements from smart contract that can be listened to by external parties
-    event GreetingChange(address indexed greetingSetter, string newGreeting, bool premium, uint256 value);
-
-    // Constructor: Called once on contract deployment
-    // Check packages/hardhat/deploy/00_deploy_your_contract.ts
-    constructor(address _owner) {
-        owner = _owner;
+    struct Candidate {
+        string name; // Имя кандидата
+        uint256 voteCount; // Количество голосов за кандидата
     }
 
-    // Modifier: used to define a set of rules that must be met before or after a function is executed
-    // Check the withdraw() function
+    mapping(address => bool) public hasVoted; // Проверка, голосовал ли участник
+    mapping(address => address) public delegatedVotes; // Маппинг для делегирования голосов
+    Candidate[] public candidates; // Массив с кандидатами
+
+    bool public votingActive = false; // Флаг активности голосования
+
+    // События
+    event CandidateAdded(string name); // Добавление кандидата
+    event VotingStarted(); // Начало голосования
+    event VotingEnded(); // Завершение голосования
+    event VoteCasted(address voter, uint256 candidateIndex); // Голосование
+    event VoteDelegated(address from, address to); // Делегирование голосов
+
     modifier isOwner() {
-        // msg.sender: predefined variable that represents address of the account that called the current function
         require(msg.sender == owner, "Not the Owner");
         _;
     }
 
+    modifier isVotingActive() {
+        require(votingActive, "Voting is not active");
+        _;
+    }
+
+    modifier hasNotVoted() {
+        require(!hasVoted[msg.sender], "Already voted");
+        _;
+    }
+
+    constructor(address _owner) {
+        owner = _owner;
+    }
+
     /**
-     * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
-     *
-     * @param _newGreeting (string memory) - new greeting to save on the contract
+     * Функция для добавления кандидатов (только владелец может добавлять).
+     * @param _name Имя кандидата
      */
-    function setGreeting(string memory _newGreeting) public payable {
-        // Print data to the hardhat chain console. Remove when deploying to a live network.
-        console.log("Setting new greeting '%s' from %s", _newGreeting, msg.sender);
+    function addCandidate(string memory _name) public isOwner {
+        candidates.push(Candidate({name: _name, voteCount: 0}));
+        emit CandidateAdded(_name);
+    }
 
-        // Change state variables
-        greeting = _newGreeting;
-        totalCounter += 1;
-        userGreetingCounter[msg.sender] += 1;
+    /**
+     * Функция для начала голосования (только владелец может начинать).
+     */
+    function startVoting() public isOwner {
+        require(!votingActive, "Voting already started");
+        votingActive = true;
+        emit VotingStarted();
+    }
 
-        // msg.value: built-in global variable that represents the amount of ether sent with the transaction
-        if (msg.value > 0) {
-            premium = true;
-        } else {
-            premium = false;
+    /**
+     * Функция для завершения голосования (только владелец может завершать).
+     */
+    function endVoting() public isOwner {
+        require(votingActive, "Voting is not active");
+        votingActive = false;
+        emit VotingEnded();
+    }
+
+    /**
+     * Функция для голосования за кандидата.
+     * @param _candidateIndex Индекс кандидата в массиве
+     */
+    function vote(uint256 _candidateIndex) public isVotingActive hasNotVoted {
+        require(_candidateIndex < candidates.length, "Invalid candidate index");
+
+        candidates[_candidateIndex].voteCount += 1;
+        hasVoted[msg.sender] = true;
+
+        emit VoteCasted(msg.sender, _candidateIndex);
+    }
+
+    /**
+     * Функция для делегирования своего голоса другому участнику.
+     * @param _delegateTo Адрес участника, которому делегируется голос
+     */
+    function delegateVote(address _delegateTo) public isVotingActive hasNotVoted {
+        require(_delegateTo != msg.sender, "Cannot delegate to yourself");
+        require(!hasVoted[_delegateTo], "Delegate already voted");
+
+        delegatedVotes[msg.sender] = _delegateTo;
+        hasVoted[msg.sender] = true;
+
+        emit VoteDelegated(msg.sender, _delegateTo);
+    }
+
+    /**
+     * Функция для сброса голоса пользователя.
+     * Разрешено только владельцу контракта.
+     * @param _voter Адрес пользователя, чей голос нужно сбросить
+     */
+    function resetVote(address _voter) public isOwner {
+        require(hasVoted[_voter], "No vote to reset");
+        
+        // Сброс состояния голосования
+        hasVoted[_voter] = false;
+        
+        // Удаление делегированного голоса
+        delegatedVotes[_voter] = address(0);
+
+        emit VoteCasted(_voter, 0); // можно изменить или убрать это событие, если нужно
+    }
+
+    /**
+     * Функция для подсчета голосов, включая делегированные.
+     */
+    function finalizeVotes() public isOwner {
+        for (uint256 i = 0; i < candidates.length; i++) {
+            // Проходим по делегированным голосам и добавляем их к кандидатам
+            for (uint256 j = 0; j < candidates.length; j++) {
+                // Могут быть реализованы проверки для подсчета делегированных голосов
+            }
         }
-
-        // emit: keyword used to trigger an event
-        emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, msg.value);
     }
-
-    /**
-     * Function that allows the owner to withdraw all the Ether in the contract
-     * The function can only be called by the owner of the contract as defined by the isOwner modifier
-     */
-    function withdraw() public isOwner {
-        (bool success, ) = owner.call{ value: address(this).balance }("");
-        require(success, "Failed to send Ether");
-    }
-
-    /**
-     * Function that allows the contract to receive ETH
-     */
-    receive() external payable {}
 }

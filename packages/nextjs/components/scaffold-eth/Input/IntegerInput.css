@@ -1,0 +1,91 @@
+/* Основной стиль для поля ввода */
+.integer-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    outline: none;
+  }
+  
+  /* Стили для поля ввода при фокусе */
+  .integer-input:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 8px rgba(108, 92, 231, 0.3);
+  }
+  
+  /* Стили для отключенного поля */
+  .integer-input:disabled {
+    background-color: #f1f3f5;
+    color: #adb5bd;
+    cursor: not-allowed;
+    border-color: #e0e0e0;
+  }
+  
+  /* Стили для поля с ошибкой */
+  .integer-input.error {
+    border-color: #e53935;
+    background-color: #ffebee;
+    color: #c62828;
+  }
+  
+  /* Стили для кнопки умножения */
+  .integer-input-suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+  }
+  
+  .integer-input-suffix button {
+    font-size: 1rem;
+    color: #6c5ce7;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .integer-input-suffix button:hover:not(:disabled) {
+    color: #5a4fcf;
+  }
+  
+  .integer-input-suffix button:disabled {
+    color: #e0e0e0;
+    cursor: not-allowed;
+  }
+  
+  /* Подсказка для кнопки */
+  .integer-input-suffix .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .integer-input-suffix .tooltip .tooltip-text {
+    visibility: hidden;
+    width: 160px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+  }
+  
+  .integer-input-suffix .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  

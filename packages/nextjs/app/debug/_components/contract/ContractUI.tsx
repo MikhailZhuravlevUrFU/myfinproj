@@ -9,6 +9,7 @@ import { Address, Balance } from "~~/components/scaffold-eth";
 import { useDeployedContractInfo, useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
+import './ContractUI.css';
 
 type ContractUIProps = {
   contractName: ContractName;
@@ -26,7 +27,7 @@ export const ContractUI = ({ contractName, className = "" }: ContractUIProps) =>
 
   if (deployedContractLoading) {
     return (
-      <div className="mt-14">
+      <div className="contract-ui-loader">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     );
@@ -34,71 +35,57 @@ export const ContractUI = ({ contractName, className = "" }: ContractUIProps) =>
 
   if (!deployedContractData) {
     return (
-      <p className="text-3xl mt-14">
+      <p className="contract-not-found">
         {`No contract found by the name of "${contractName}" on chain "${targetNetwork.name}"!`}
       </p>
     );
   }
 
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-6 px-6 lg:px-10 lg:gap-12 w-full max-w-7xl my-0 ${className}`}>
-      <div className="col-span-5 grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
-        <div className="col-span-1 flex flex-col">
-          <div className="bg-base-100 border-base-300 border shadow-md shadow-secondary rounded-3xl px-6 lg:px-8 mb-6 space-y-1 py-4">
-            <div className="flex">
-              <div className="flex flex-col gap-1">
-                <span className="font-bold">{contractName}</span>
+    <div className={`contract-ui-container ${className}`}>
+        <div className="contract-info">
+          <div className="contract-card">
+            <div className="contract-card-header">
+              <div className="contract-card-title">
+                <span className="contract-name">{contractName}</span>
                 <Address address={deployedContractData.address} onlyEnsOrAddress />
-                <div className="flex gap-1 items-center">
-                  <span className="font-bold text-sm">Balance:</span>
-                  <Balance address={deployedContractData.address} className="px-0 h-1.5 min-h-[0.375rem]" />
+                <div className="balance-info">
+                  <span className="balance-label">Balance:</span>
+                  <Balance address={deployedContractData.address} className="balance" />
                 </div>
               </div>
             </div>
             {targetNetwork && (
-              <p className="my-0 text-sm">
-                <span className="font-bold">Network</span>:{" "}
-                <span style={{ color: networkColor }}>{targetNetwork.name}</span>
+              <p className="network-info">
+                <span className="network-label">Network</span>:{" "}
+                <span className="network-name" style={{ color: networkColor }}>{targetNetwork.name}</span>
               </p>
             )}
           </div>
-          <div className="bg-base-300 rounded-3xl px-6 lg:px-8 py-4 shadow-lg shadow-base-300">
+          <div className="contract-variables">
             <ContractVariables
               refreshDisplayVariables={refreshDisplayVariables}
               deployedContractData={deployedContractData}
             />
           </div>
         </div>
-        <div className="col-span-1 lg:col-span-2 flex flex-col gap-6">
-          <div className="z-10">
-            <div className="bg-base-100 rounded-3xl shadow-md shadow-secondary border border-base-300 flex flex-col mt-10 relative">
-              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-[22px] -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300">
-                <div className="flex items-center justify-center space-x-2">
-                  <p className="my-0 text-sm">Read</p>
-                </div>
+        <div className="contract-actions">
+          <div className="contract-methods">
+            <div className="card">
+            <p className="method-title">Read</p>
+              <ContractReadMethods deployedContractData={deployedContractData} />
               </div>
-              <div className="p-5 divide-y divide-base-300">
-                <ContractReadMethods deployedContractData={deployedContractData} />
-              </div>
-            </div>
           </div>
-          <div className="z-10">
-            <div className="bg-base-100 rounded-3xl shadow-md shadow-secondary border border-base-300 flex flex-col mt-10 relative">
-              <div className="h-[5rem] w-[5.5rem] bg-base-300 absolute self-start rounded-[22px] -top-[38px] -left-[1px] -z-10 py-[0.65rem] shadow-lg shadow-base-300">
-                <div className="flex items-center justify-center space-x-2">
-                  <p className="my-0 text-sm">Write</p>
-                </div>
-              </div>
-              <div className="p-5 divide-y divide-base-300">
-                <ContractWriteMethods
-                  deployedContractData={deployedContractData}
-                  onChange={triggerRefreshDisplayVariables}
-                />
-              </div>
+          <div className="contract-methods">
+            <div className="card">
+            <p className="method-title">Write</p>
+              <ContractWriteMethods
+              deployedContractData={deployedContractData}
+              onChange={triggerRefreshDisplayVariables}
+            />
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

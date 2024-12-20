@@ -1,0 +1,85 @@
+/* Основной стиль для контейнера поля ввода */
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .input-container:focus-within {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 8px rgba(108, 92, 231, 0.5);
+  }
+  
+  /* Стиль для префикса (ENS имя или аватар) */
+  .input-container .prefix {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f5;
+    border-radius: 8px 0 0 8px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  
+  /* Стиль для аватара */
+  .input-container .prefix img.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Стиль для текста ENS имени */
+  .input-container .prefix .ens-name {
+    font-size: 0.875rem;
+    color: #6c5ce7;
+    font-weight: bold;
+  }
+  
+  /* Скелетон-заглушка для загрузки */
+  .input-container .skeleton {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite;
+  }
+  
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+  
+  /* Стиль для текстового поля */
+  .input-container input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 10px;
+    background-color: transparent;
+    color: #333;
+  }
+  
+  .input-container input:disabled {
+    background-color: #f8f9fa;
+    color: #adb5bd;
+    cursor: not-allowed;
+  }
+  
+  /* Стиль для иконки справа (суффикс) */
+  .input-container img.suffix {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  

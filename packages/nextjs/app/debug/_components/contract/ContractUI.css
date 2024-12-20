@@ -1,0 +1,121 @@
+.contract-ui-container {
+    background-color: rgb(85, 78, 78);
+    height: 1080px;
+}
+
+.contract-actions {
+    background-color: rgb(85, 78, 78);
+}
+
+.contract-methods {
+    display: flex;          /* Выстраиваем элементы в строку */
+    flex-wrap: nowrap;      /* Запрещаем перенос элементов на следующую строку */
+    gap: 40px;              /* Расстояние между элементами */
+    background-color: rgb(85, 78, 78);
+    width: 100%;    
+    overflow-x: auto;       /* Включаем прокрутку по горизонтали, если элементы не помещаются */
+    padding: 10px 0;        /* Немного отступов сверху и снизу */
+}
+
+.card {
+    display: flex;
+    gap: 20px;  
+    background-color: rgb(231, 231, 231);
+    height: 100%;
+    width: 1450px;
+    align-items: center;  /* Центрируем содержимое по вертикали */
+    justify-content: center;  /* Центрируем содержимое по горизонтали */
+    padding: 20px; /* Можно добавить немного отступов для эстетики */
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-top: 50px;
+    overflow-x: hidden;  /* Отключаем горизонтальный скролл */
+}
+
+.method-title {
+    font-size: 24px;  /* Увеличиваем размер шрифта */
+    font-weight: bold; /* Сделаем текст жирным */
+    text-align: center;  /* Выравнивание по центру */
+}
+
+/* Стили для карточки с контрактной информацией */
+.contract-info {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px 0 0 50px;
+    width: 1450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contract-card {
+    padding: 0 20px 20px 20px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 20px 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Располагаем элементы вертикально */
+    justify-content: space-between; /* Размещаем элементы с расстоянием между ними */
+    height: 150px; /* Фиксированная высота */
+}
+
+.contract-variables{
+    padding: 0 20px 20px 20px;
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0px 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row; /* Располагаем элементы вертикально */
+    justify-content: space-between; /* Размещаем элементы с расстоянием между ними */
+    height: 150px; /* Фиксированная высота */
+}
+
+.contract-card-header {
+    display: flex;
+    flex-direction: column;  /* Размещаем элементы вертикально */
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.contract-card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Расстояние между элементами */
+}
+
+.balance-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.network-info {
+    font-size: 14px;
+    color: rgb(85, 78, 78);
+}
+
+.network-label {
+    font-weight: bold;
+}
+
+.network-name {
+    color: rgb(0, 123, 255);  /* Цвет сети */
+}
+
+.balance{
+    border-radius: 100px;
+
+}
+
+.contract-name {
+    font-weight: bold;
+    font-size: 26px;
+}

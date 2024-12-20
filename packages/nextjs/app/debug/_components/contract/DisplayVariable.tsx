@@ -10,6 +10,7 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useAnimationConfig } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getParsedError, notification } from "~~/utils/scaffold-eth";
+import "./DisplayVariable.css";
 
 type DisplayVariableProps = {
   contractAddress: Address;
@@ -57,10 +58,10 @@ export const DisplayVariable = ({
   }, [error]);
 
   return (
-    <div className="space-y-1 pb-2">
-      <div className="flex items-center">
+    <div className="display-variable-container space-y-1 pb-2">
+      <div className="flex items-center display-variable-header">
         <h3 className="font-medium text-lg mb-0 break-all">{abiFunction.name}</h3>
-        <button className="btn btn-ghost btn-xs" onClick={async () => await refetch()}>
+        <button className="btn-refresh" onClick={async () => await refetch()}>
           {isFetching ? (
             <span className="loading loading-spinner loading-xs"></span>
           ) : (
@@ -68,8 +69,6 @@ export const DisplayVariable = ({
           )}
         </button>
         <InheritanceTooltip inheritedFrom={inheritedFrom} />
-      </div>
-      <div className="text-base-content/80 flex flex-col items-start">
         <div>
           <div
             className={`break-all block transition bg-transparent ${
@@ -79,6 +78,8 @@ export const DisplayVariable = ({
             {displayTxResult(result)}
           </div>
         </div>
+      </div>
+      <div className="text-base-content/80 flex flex-col items-start">
       </div>
     </div>
   );
